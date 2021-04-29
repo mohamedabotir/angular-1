@@ -3,5 +3,29 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <input value=[("title")]>
+  <input (input)="solid($event)" />
+  <br />
+  <input [(ngModel)]="serverName" />
+  <br />
+  <button
+    class="btn btn-primary"
+    [disabled]="serverName ===''"
+    (click)="serverName = ''"
+  >
+    Reset
+  </button>
+  <button
+    class="btn btn-primary"
+    [disabled]="serverName ===''"
+    (click)="createServer()"
+  >
+    Add+
+  </button>
+  <h2 *ngIf="creationStatus;else no">
+    Server {{serverName}} Created Successfully
+  </h2>
+  <ng-template #no>
+    <p>no Server Craeted Yet</p>
+  </ng-template>
+  <app-servers *ngFor="let server of servers"></app-servers>
 </div>
